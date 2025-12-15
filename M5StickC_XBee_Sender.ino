@@ -69,20 +69,12 @@ void sendSensorData()
   int bright = 4095 - raw;
   int light = map(bright, 0, 4095, 0, 5000);
  
-  //--------------------------
-  // ジャイロ
-  //--------------------------
-  float gx, gy, gz;
-  M5.Imu.getGyro(&gx, &gy, &gz);
  
   //--------------------------
   // ラベル付き送信データ作成
   //--------------------------
   String data =
-    "BRIGHT=" + String(light) +
-    ",GX=" + String(gx, 2) +
-    ",GY=" + String(gy, 2) +
-    ",GZ=" + String(gz, 2) + "\n";
+    "BRIGHT=" + String(light);
  
   //--------------------------
   // XBee 送信
@@ -101,7 +93,6 @@ void sendSensorData()
   M5.Display.fillRect(0, 20, 240, 110, BLACK);
   M5.Display.setCursor(0, 20);
   M5.Display.printf("BRIGHT: %4d\n", light);
-  M5.Display.printf("GX    : %+6.2f\n", gx);
-  M5.Display.printf("GY    : %+6.2f\n", gy);
-  M5.Display.printf("GZ    : %+6.2f\n", gz);
 }
+ 
+ 
